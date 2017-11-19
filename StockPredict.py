@@ -59,7 +59,9 @@ def main(symbol,name):
     else:
         rating=1
 
-    print("Rating", rating)
+
+    output=(predicted_price,rating)
+    print("Final Output",output)
 
 def sigmoid(val):
 
