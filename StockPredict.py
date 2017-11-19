@@ -37,5 +37,6 @@ def get_historical(quote):
 
 get_historical("mchp")
 get_data("mchp"+".csv") # calling get_data method by passing the csv file to it
-print(predict_price(dates, prices, (datetime.datetime.now() + datetime.timedelta(days=1)).day
-))
+predicted_price = predict_price(dates, prices, (datetime.datetime.now() + datetime.timedelta(days=1)).day)
+print(predicted_price)
+print((predicted_price - prices[0])/prices[0])
