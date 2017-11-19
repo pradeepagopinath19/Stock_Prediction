@@ -3,9 +3,12 @@ import numpy as np
 from sklearn.svm import SVR
 import requests
 import datetime
-
+import scrapeGoogleFinanceNews
+import sentimentAnalysis
+import math
 dates = []
 prices = []
+
 
 def get_data(filename):
     with open(filename, 'r') as csvfile:
@@ -35,8 +38,31 @@ def get_historical(quote):
                 f.write(chunk)
     return True
 
-get_historical("mchp")
-get_data("mchp"+".csv") # calling get_data method by passing the csv file to it
-predicted_price = predict_price(dates, prices, (datetime.datetime.now() + datetime.timedelta(days=1)).day)
-print(predicted_price)
-print((predicted_price - prices[0])/prices[0])
+def main(symbol,name):
+    get_historical(symbol)
+    get_data(symbol+".csv") # calling get_data method by passing the csv file to it
+    predicted_price = predict_price(dates, prices, (datetime.datetime.now() + datetime.timedelta(days=1)).day)
+    print(predicted_price)
+    twittedPredictedScore=sentimentAnalysis.tweetAnalysis(symbol,name)
+    googleNewsPredictedScore=scrapeGoogleFinanceNews.googleFinance(symbol)
+    stockPredictedScore=(predicted_price - prices[0])/prices[0]
+    print("Finally3",stockPredictedScore)
+    CombinedComputedValue=((twittedPredictedScore+googleNewsPredictedScore+stockPredictedScore)/3)*100
+    print("Initial Checking", CombinedComputedValue)
+    CombinedComputedValue=sigmoid(CombinedComputedValue)
+    print("Checking",CombinedComputedValue)
+    rating=0
+    if CombinedComputedValue> 0.7:
+        rating=3
+    elif CombinedComputedValue>=0:
+        rating=2
+    else:
+        rating=1
+
+    print("Rating", rating)
+
+def sigmoid(val):
+
+    return (1/(1+(math.e)**-val))
+
+main("GOOGL","GOOGLE")
