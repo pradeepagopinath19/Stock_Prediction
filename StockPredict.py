@@ -11,7 +11,7 @@ def get_data(filename):
 		next(csvFileReader)	# skipping column names
 		for row in csvFileReader:
 			dates.append(int(row[0].split('-')[0]))
-			prices.append(float(row[4]))
+			prices.append(float(row[2]))
 	return
 
 def predict_price(dates, prices, x):
