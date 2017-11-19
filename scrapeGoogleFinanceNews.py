@@ -9,12 +9,13 @@ def googleFinance(symbol):
     noOfnews=0
     root = ET.fromstring(reqdoc.text)
     for n in root.iter('title'):
-        print(n.text)
+        #print(n.text)
         noOfnews+=1
         text = TextBlob(n.text)
         factor = TextBlob(n.text).sentiment
         opinion += factor.subjectivity
         positivity += factor.polarity
     finalfactor = ((opinion/8) / noOfnews) * (positivity*2/ noOfnews)
-    print ("Final factor",finalfactor)
+    print ("Finally2",finalfactor)
+    return finalfactor
 googleFinance("GOOGL")
