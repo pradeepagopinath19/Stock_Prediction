@@ -26,7 +26,7 @@ def tweetAnalysis(symbol,name):
     key_words=0
     for st in symbolTweets:
         noOftweets+=1
-        print(" ST Tweet is:",st.text)
+        #print(" ST Tweet is:",st.text)
         text=TextBlob(st.text)
         words=text.words
         factor = TextBlob(st.text).sentiment
@@ -49,7 +49,7 @@ def tweetAnalysis(symbol,name):
     key_words = 0
     for st in symbolTweets:
         noOftweets += 1
-        print(" ST Tweet is:", st.text)
+        #print(" ST Tweet is:", st.text)
         text = TextBlob(st.text)
         words = text.words
         factor = TextBlob(st.text).sentiment
@@ -64,7 +64,7 @@ def tweetAnalysis(symbol,name):
             finalfactor = (((opinion / 8) / noOftweets) * (2 * positivity / noOftweets)) + (key_words / noOftweets)
         else:
             finalfactor = (opinion / noOftweets) * (positivity / noOftweets)
-    print("Final factor1", finalfactor)
+    #print("Final factor1", finalfactor)
 
     positivity = 0
     opinion = 0
@@ -76,7 +76,7 @@ def tweetAnalysis(symbol,name):
     companyTweets=myAPI.search(name,count=100)
     for st in companyTweets:
         noOftweets += 1
-        print(" ST Tweet is:", st.text)
+        #print(" ST Tweet is:", st.text)
         text = TextBlob(st.text)
         words = text.words
         factor = TextBlob(st.text).sentiment
@@ -84,15 +84,15 @@ def tweetAnalysis(symbol,name):
             if factor.polarity > 0 and (w == "buy" or w == "invest"):
                 key_words += 1
 
-    opinion += factor.subjectivity
-    positivity += factor.polarity
+        opinion += factor.subjectivity
+        positivity += factor.polarity
     if noOftweets != 0:
         if key_words != 0:
             finalfactor1 = (((opinion / 8) / noOftweets) * (2 * positivity / noOftweets)) + (key_words / noOftweets)
         else:
             finalfactor1 = (opinion / noOftweets) * (positivity / noOftweets)
-    print("Final factor2", finalfactor1)
-    print ("FInally",((finalfactor+finalfactor1)/2))
+    print(":::", finalfactor1)
+    print ("FInally1",((finalfactor+finalfactor1)/2))
     return ((finalfactor+finalfactor1)/2)
 
 tweetAnalysis("GOOGL","GOOGLE inc")
