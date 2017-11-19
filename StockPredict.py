@@ -2,6 +2,7 @@ import csv
 import numpy as np
 from sklearn.svm import SVR
 import requests
+import datetime
 
 dates = []
 prices = []
@@ -36,4 +37,5 @@ def get_historical(quote):
 
 get_historical("mchp")
 get_data("mchp"+".csv") # calling get_data method by passing the csv file to it
-print(predict_price(dates, prices, 18))
+print(predict_price(dates, prices, (datetime.datetime.now() + datetime.timedelta(days=1)).day
+))
