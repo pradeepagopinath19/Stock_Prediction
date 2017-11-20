@@ -52,19 +52,25 @@ def main(symbol,name):
     CombinedComputedValue=sigmoid(CombinedComputedValue)
     print("Checking",CombinedComputedValue)
     rating=0
-    if CombinedComputedValue> 0.7:
+    if CombinedComputedValue> 0.6:
         rating=3
-    elif CombinedComputedValue>=0:
+    elif CombinedComputedValue>=0.2:
         rating=2
     else:
         rating=1
-
-
+    print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    print("Rating 3- We highly reccommend you to buy or hold on to your shares.")
+    print("Rating 2- Add it to your watchlist and monitor it")
+    print("Rating 1- Code red! sell it")
+    print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    print("Our prediction for next day's price:",predicted_price)
+    print("The rating is:",rating)
     output=(predicted_price,rating)
-    print("Final Output",output)
+    print (output)
+    return output
 
 def sigmoid(val):
 
     return (1/(1+(math.e)**-val))
 
-main("GOOGL","GOOGLE")
+main("TSLA","Tesla")
