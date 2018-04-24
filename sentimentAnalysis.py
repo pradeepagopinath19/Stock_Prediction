@@ -4,12 +4,16 @@ import nltk
 nltk.download('punkt')
 
 def tweetAnalysis(symbol,name):
-    user_key="uLCKU6myhzi58R8X7GHlAk2VM"
-    user_secret="tS9xKXmtWDNSCW2ri6cqTOtrifUZeqMKJu5jm06cxy24XF8vbG"
+    user_key="uLCKU6myhzi58R8X7GHlAk2"
+    #VM
+    user_secret="tS9xKXmtWDNSCW2ri6cqTOtrifUZeqMKJu5jm06cxy24XF8v"
+    #bG
 
 
-    access_token="106322211-dLt4z8tq9oVtx5etpIYANHJuC3I5ymT1W80wgh2b"
-    access_token_secret="e9oPkfdyApMhyMyaD088C4cG9xi1nEhYriGfSWzrRCuq1"
+    access_token="106322211-dLt4z8tq9oVtx5etpIYANHJuC3I5ymT1W80wgh"
+    #2b
+    access_token_secret="e9oPkfdyApMhyMyaD088C4cG9xi1nEhYriGfSWzrRCu"
+    #q1
 
 
     authentication=tweepy.OAuthHandler(user_key,user_secret)
